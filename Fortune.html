@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>A Cat's Wisdom.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div id="main-cont">
+  <img src="image-elements/div-tarot.png" alt="Div">
+</div>
+
+<div id="header">
+  <img src="image-elements/header-tarot.png" alt="Header">
+</div>
+
+<div id="nav">
+  <img src="image-elements/MB.png" onclick="toggleAudio()"
+    style="cursor: pointer;" width="120" height="auto;" alt="Music Box">
+  <audio id="ft" src="audio/Gentle-Reverie.mp3"></audio>
+  <a href="Homepage.html"> <img src="image-elements/AM.png" width="90" height="auto;"></a>
+  <a href="Blog.html"><img src="image-elements/BL.png" width="130" height="auto;"></a>
+  <a href="Gallery.html"><img src="image-elements/GAL.png" width="140" height="auto;"></a>
+</div>
+
+<div id="holder">
+<div id="tarot-cont1">
+ <div id="top-card">
+  <img id="top" src="image-elements/tarot-cover.png" alt="Tarot card (top)"> </div>
+  <div id="tarot-display">
+  <img src="image-elements/the_fool.png" alt="Tarot card (under)"> </div>
+</div>
+
+<div id="tarot-cont2">
+  <h1 id="tarot-title"> "Curiosity killed the cat." </h1>
+  <p id="tarot-meaning"> <i>- Or so they say. </i> The cat knows more than he lets on… perhaps he’ll reveal a <i>secret meant just for you</i>. Click and see what fortune awaits <i>you.</i> </p>
+  <div>
+  <button onclick="getReading()"> Get my Reading </button> 
+  </div>
+ </div>
+</div>
+
+<div id="loading-modal">
+  <h1 id="text-overlay"> Your Fortune is being determined.. </h1> 
+</div>
+
+<div id="shadow">
+</div>
+
+</body>
+<style>
+@font-face {
+  font-family: 'IFDW';
+  src: url('fonts/im_fell_types/IM Fell DW Pica/FePIrm2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#tarot-title {
+  margin-top: 45px;
+  margin-bottom: -6px;
+  color: #403253;
+  font-weight: bold;
+}
+
+#text-overlay {
+  color: #d3cec3;
+}
+
+
+#tarot-meaning {
+  color: #403253;
+  text-align: justify;
+  text-indent: 10px;
+}
+
+body {
+  background-image: url('image-elements/bg-tarot.png');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;  
+  justify-content: space-evenly;
+  align-items: center;   
+  font-family: 'IFDW', serif;    
+}
+
+#main-cont {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#main-cont img {
+  width: 100%;
+  height: 100%;
+}
+
+#header {
+  display: flex;
+  position: fixed;
+  transform: translateY(-230px);
+  z-index: 20;
+}
+
+@keyframes gentleBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#header img {
+  width: 500px;
+  height: auto;
+  filter: drop-shadow(0px 3px 5px #000000);
+  animation: gentleBounce 2s ease-in-out 0.7s infinite;
+
+}
+
+#tarot-cont1 {
+  padding: 30px;
+  height: 350px;
+  width: 200px;
+  display: flex;
+  align-items: center;  
+  z-index: 20;
+}
+
+#tarot-cont2 {
+  padding: 30px;
+  height: 350px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  z-index: 20;
+}
+
+#holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space evenly;
+  justify-content: center;
+}
+
+
+#top-card {
+  display: flex;
+  position: fixed;
+  transform: translate(40px, 29px);
+  z-index: 20;
+}
+
+#top-card img {
+  width: 185px;
+  height: auto;
+}
+
+#tarot-display {
+  display: flex;
+  position: fixed;
+  transform: translateY(20px);
+  z-index: 10;
+}
+
+#tarot-display img {
+  width: 230px;
+  height: auto;
+  filter: drop-shadow(0px 3px 5px #000000);
+}
+
+#nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  background-color: rgb(0 0 0 / 35%); 
+  transform: translate(-50%, 20%);
+  padding: 5px;
+  height: 120px;
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 30; 
+  border-radius: 40px;
+}
+
+#nav img {
+  display: block;
+}
+
+#nav img:hover {
+  transform: rotate(4deg) scale(1.03);
+}
+
+#shadow {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: inset 0px 0px 85px rgba(0, 0, 0, 0.9);   
+}
+
+#loading-modal {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%; 
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   font-size: 2em;
+   text-align: center;
+   padding-top: 20%;
+   z-index: 30;
+}
+
+
+@media screen and (max-width: 480px) {
+
+body {
+  background-image: url('image-elements/bgm-ft.png');
+  flex-direction: column; 
+  align-items: center;
+  justify-content: flex-start;
+  height: 900px;
+  overflowX: hidden;
+}
+
+#shadow {
+  width: 130vw;
+  height: 140vh;
+}
+
+#header {
+  position: relative;
+  transform: none;
+  margin-top: 20px;
+}
+
+#header img {
+  width: 80vw;
+  max-width: 300px;
+}
+
+#holder {
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#main-cont {
+  display: none;
+}
+
+#tarot-cont1 {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  transform: none;
+}
+
+#top-card {
+  display: none;
+}
+
+#tarot-display {
+  position: relative;
+  transform: none;
+  right: 30px;
+}
+
+#top-card img {
+  width: 150px;
+}
+
+#tarot-display img {
+  width: 180px;
+  transform: none;
+}
+
+#tarot-cont2 {
+  width: 70vw;
+  max-width: 320px;
+  height: auto;
+  padding: 15px;
+}
+
+#tarot-title {
+  font-size: 20px;
+  text-align: center;
+  margin-top: -35px;
+  margin-left: -35px;
+
+}
+
+#tarot-meaning {
+  font-size: 13px;
+  margin-left: -40px;
+  overflow: auto;
+}
+
+button {
+  margin-top: 5px;
+  margin-left: -40px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+#nav {
+  width: 95%;
+  max-width: 400px;  
+  height: 75px;
+  bottom: 10px;
+  padding: 5px;
+}
+
+#nav img {
+  height: 65px;
+  width: auto;
+}
+
+#loading-modal h1 {
+  font-size: 18px;
+  padding: 0 20px;
+}
+}
+
+</style>
+</html>
+
+<script>
+  const audio = document.getElementById("ft");
+  function toggleAudio() {
+  if (audio.paused) {
+   audio.play().catch(err => {
+   console.error("Audio play failed:", err); 
+   });
+  } else {
+   audio.pause();} 
+}
+
+    function getReading() {
+        adjustModal();
+        adjustTop();
+        setTimeout(TarotCard, 2000);
+   }
+
+    function adjustModal() {
+        let modal = document.getElementById("loading-modal");
+        if(modal.style.display === "block")
+            modal.style.display = "none";
+		
+        else
+            modal.style.display = "block";
+    }
+
+    function adjustTop() {
+        let tc = document.getElementById("top-card");
+        if(tc.style.display === "block")
+            tc.style.display = "none";
+		
+        else
+            tc.style.display = "none";
+    }
+
+
+    function TarotCard() {
+
+        const tarot = { 
+            titles: ["Ms. Alice", "The Mad Hatter", "The Rabbit", "Rat King"],
+            meanings: [
+                "The Fool represents new beginnings, having faith in the future, and embracing the unknown. This card invites you to step forward with fresh eyes and an open heart, reminding you that every journey starts with curiosity and that sometimes the best experiences come from simply taking that first bold step. Trust your instincts as you walk into uncharted territory and welcome the surprises that unfold. //If you don’t know where you’re going, then it doesn’t matter which way you go. — Cheshire Cat (Lewis Carroll)",
+                "The Magician signifies manifestation, resourcefulness, and the power to create your reality. This card encourages you to recognize the tools you already possess (your skills, focus, and inner creativity) and use them with intention. Now is the time to turn ideas into action. With clarity and presence, you can transform thoughts into tangible results. //We’re all mad here. — Cheshire Cat (Lewis Carroll)",
+                "The Chariot embodies determination, willpower, and triumph over obstacles. This card urges you to steer your path with confidence and discipline. Challenges may arise, but your focused determination will guide you through them. Move forward with courage, knowing that control of your direction leads to meaningful progress. //Oh, you’re sure to do that, if you only walk long enough. — Cheshire Cat (Lewis Carroll)",
+                "The Emperor stands for authority, structure, and the establishment of order. This card encourages you to bring stability and clarity to your world. With thoughtful planning and decisive leadership, you can create frameworks that support your goals. Strength lies not just in ambition, but in strategy and consistency. //I am not crazy; my reality is just different from yours. — Cheshire Cat (Lewis Carroll)"
+            ],
+            images: ["image-elements/the_fool.png", "image-elements/the_magician.png", "image-elements/the_chariot.png", "image-elements/the_emperor.png"]
+        };
+
+        let image = document.getElementById("tarot-display");
+        let title = document.getElementById("tarot-title");
+        let description = document.getElementById("tarot-meaning");
+        let reading_index = Math.floor(Math.random() * 4);
+
+        adjustModal();
+
+        image.innerHTML = `<img src="${tarot.images[reading_index]}">`;
+        title.innerText = tarot.titles[reading_index];
+        description.innerText = tarot.meanings[reading_index];
+    }
+
+</script>

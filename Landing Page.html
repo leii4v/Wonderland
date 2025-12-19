@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>What lies beyond.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div id="header">
+<h1> Welcome to Wonderland. </h1>
+</div>
+
+<div id="door-cont">
+<a href="Homepage.html"> 
+<img src="image-elements/door overlay.png">
+</a>
+<span class="tooltiptext">...take a peek?</span>
+</div>
+
+<div class="hover-image-cont"></div>
+
+
+<div id="music-cont">
+<audio controls> <source src="audio/Title Screen.mp3">
+</audio>
+</div>
+
+</body>
+
+
+<style>
+@font-face {
+  font-family: 'IFC';
+  src: url('fonts/im_fell_types/IM Fell French Canon/FeFCsc2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-image: url('image-elements/body-background.png');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;  
+  align-items: center;   
+  box-shadow: inset 0px 0px 85px rgba(0, 0, 0, 0.9);       
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+h1 {
+  display: flex;
+  color: #84a9b4;
+  font-size: 70px;
+  font-family: "IFC", serif;
+  filter: drop-shadow(0px 3px 5px #000000);
+  animation: gentleBounce 2s ease-in-out 0.8s infinite;
+}
+
+@keyframes gentleBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+#header {
+  display: flex;
+  position: fixed;
+  transform: translateY(-240px);
+}
+
+#door-cont {
+  position: absolute;    
+}
+
+#door-cont img {
+  width: 150px;
+  height: auto;
+  transform: translateY(90px);
+  filter: drop-shadow(0px 3px 5px #611e31);
+  transition: opacity .2s ease;
+}
+
+#door-cont img:hover {
+  content: url("image-elements/door-peek.png");  
+  height: 295px;
+  filter: drop-shadow(0px 3px 5px #611e31);
+}
+
+.tooltiptext {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.7);
+  padding: 5px 10px;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+}
+
+#door-cont:hover .tooltiptext {
+  opacity: 1;
+}
+
+#music-cont {
+  transform: translate(-145%, 360%);
+  width: 300px;
+  height: 70px;
+  align-items: center;
+  position: relative;
+}
+
+@media screen and (max-width: 480px) {
+
+body {
+  background-image: url('image-elements/bg-back-mobile.png');
+  align-items: center;
+}
+
+#music-cont {
+  left: 135px;
+  bottom: -100px;
+  width: 150px;
+  height: 50px;
+  position: relative;
+}
+
+h1 {
+  top: 50px;
+  font-size: 50px;
+  font-family: "IFC", serif;
+}
+}
+</style>
+</html>
+
+<script>
+const myAudio = document.getElementById("myAudio");
+
+function toggleAudio() {
+  if (myAudio.paused) {
+    myAudio.play();
+  } else {
+    myAudio.pause();
+  }
+}
+
+</script>

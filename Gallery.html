@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Queen's Collection.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<div id="curtain-cont">
+  <img src="image-elements/curtains.png" alt="Curtain">
+</div>
+
+<div id="header">
+  <img src="image-elements/header-gal.png" alt="Header">
+</div>
+
+<div id="nav">
+  <img src="image-elements/MB.png" onclick="toggleAudio()"
+    style="cursor: pointer;" width="120" height="auto;" alt="Music Box">
+  <audio id="gal" src="audio/Lakmé_ Flower Duet.mp3"></audio>
+ <a href="Homepage.html"> <img src="image-elements/AM.png" width="90" height="auto;"></a>
+  <a href="Blog.html"><img src="image-elements/BL.png" width="130" height="auto;"></a>
+  <a href="Fortune.html"><img src="image-elements/FT.png" width="110" height="auto;"></a>
+</div>
+
+<div class="gallery">
+<div class="framepic"><img src="image-elements/g-snow.png" alt="Girl in snow art"></div>
+<div class="framepic"><img src="image-elements/g-bird.jpg" alt="Bird digital art"></div>
+<div class="framepic"><img src="image-elements/g-BLUE.jpg" alt="Blue"></div>
+<div class="framepic"><img src="image-elements/g-Color.jpg" alt="Colorful art"></div>
+<div class="framepic"><img src="image-elements/g-values.jpg" alt="black&white portrait"></div>
+<div class="framepic"><img src="image-elements/g-new.jpg" alt="Portrait sketch"></div>
+<div class="framepic"><img src="image-elements/g-Karina.png" alt="Karina Armageddon Poster"></div>
+<div class="framepic"><img src="image-elements/g-YOI.png" alt="Genshin Yoimiya Poster"></div>
+<div class="framepic"><img src="image-elements/g-CWY.png" alt="Cool with You - newjeans poster"></div>
+
+</div>
+
+</body>
+
+<style>
+
+body {
+  background-image: url('image-elements/bg-gal.png');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  display: flex;
+  justify-content: center;  
+  align-items: center; 
+  width:auto;
+  height: 100vh;
+  font-family: 'IFDW', serif;
+}
+
+#curtain-cont {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#curtain-cont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#header {
+  position: fixed;
+  top: -60px;
+  left: 350px;
+  z-index: 20;
+}
+
+#header img {
+  width: 600px;
+  height: auto;
+  filter: drop-shadow(0px 3px 5px #000000);
+  animation: gentleBounce 2s ease-in-out 0.7s infinite;
+
+}
+
+@keyframes gentleBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#nav {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0,0.35);
+  padding: 5px;
+  height: 120px;
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 30;
+  border-radius: 40px;
+}
+
+#nav img {
+  display: block;
+}
+
+#nav img:hover {
+  transform: rotate(4deg) scale(1.03);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  max-width: 1200px; 
+  margin: 350px auto 50px auto;
+  margin-top: 700px;
+  padding: 0 20px;
+}
+
+.framepic {
+  background-color: white;
+  height: 280px;
+  width: 280px;
+  border-radius: 15px;
+  overflow: hidden;
+  flex: 0 0 auto; 
+  transition: transform 0.3s ease-in-out;
+}
+
+.framepic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.framepic:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+@media screen and (max-width: 480px) {
+
+body {
+  background-image: url('image-elements/bgm-gal.png');
+  display: block;
+  height: auto;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#curtain-cont {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#curtain-cont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#header {
+  top: 0;
+  left: 50%;
+  transform: translateX(-165px);
+  width: 300px;
+  height: auto;
+}
+
+#header img {
+  width: 80vw;
+  max-width: 350px;
+  height: auto;
+}
+
+#nav {
+  width: 90%;
+  max-width: 400px;
+  height: 80px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 30px;
+  padding: 5px;
+}
+
+#nav img {
+  height: 65px;
+  width: auto;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  margin: 150px auto 120px 28px; 
+  padding: 10px;
+  max-width: 90vw;
+}
+
+.framepic {
+  width: 90vw;
+  max-width: 320px;
+  height: auto;
+}
+
+.framepic img {
+  height: auto;
+}
+}
+
+</style>
+</html>
+
+<script>
+
+  const audio = document.getElementById("gal");
+  function toggleAudio() {
+  if (audio.paused) {
+   audio.play().catch(err => {
+   console.error("Audio play failed:", err); 
+   });
+  } else {
+   audio.pause();
+  } }
+
+</script>
